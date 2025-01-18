@@ -1,0 +1,48 @@
+# Template file for 'hyprland-qt-support'
+pkgname=hyprland-qt-support
+version=0.1.0
+revision=1
+hostmakedepends="cmake pkgconf qt6-base qt6-tools"
+makedepends="hyprlang qt6-wayland-devel qt6-declarative-devel qt6-base-devel qt6-tools-devel"
+short_desc="A small C++ library used across the Hypr* ecosystem"
+maintainer="Makrennel <makrommel@protonmail.ch>"
+license="BSD-3-Clause"
+homepage="https://github.com/hyprwm/hyprland-qt-support"
+distfiles="https://github.com/hyprwm/hyprland-qt-support/archive/refs/tags/v${version}.tar.gz"
+checksum=cac1f980bd088b890097f3f999cfdf03e73ee94c53f3c92d0b3bc23baa9e7b2c
+do_build() {
+	cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -DINSTALL_QML_PREFIX=/lib/qt6/qml -S . -B ./build
+	cmake --build ./build --config Release --target all
+	cmake --install ./build
+}
+do_install() {
+        mkdir -p /destdir/${pkgname}-${version}/usr/
+        mkdir -p /destdir/${pkgname}-${version}/usr/lib/
+        mkdir -p /destdir/${pkgname}-${version}/usr/lib/qt6/
+        mkdir -p /destdir/${pkgname}-${version}/usr/lib/qt6/qml/
+        mkdir -p /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/
+        mkdir -p /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/hyprland/
+        mkdir -p /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/hyprland/style/
+        mkdir -p /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/hyprland/style/impl/
+        mkdir -p /destdir/${pkgname}-${version}/usr/share/
+        mkdir -p /destdir/${pkgname}-${version}/usr/share/licenses/
+        mkdir -p /destdir/${pkgname}-${version}/usr/share/licenses/hyprland-qt-support/
+        cp -T /usr/lib/libhyprland-quick-style-impl.so /destdir/${pkgname}-${version}/usr/lib/libhyprland-quick-style-impl.so
+        cp -T /usr/lib/libhyprland-quick-style.so /destdir/${pkgname}-${version}/usr/lib/libhyprland-quick-style.so
+        cp -T /usr/lib/qt6/qml/org/hyprland/style/Button.qml /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/hyprland/style/Button.qml
+        cp -T /usr/lib/qt6/qml/org/hyprland/style/CheckBox.qml /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/hyprland/style/CheckBox.qml
+        cp -T /usr/lib/qt6/qml/org/hyprland/style/TextField.qml /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/hyprland/style/TextField.qml
+        cp -T /usr/lib/qt6/qml/org/hyprland/style/hyprland-quick-style.qmltypes /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/hyprland/style/hyprland-quick-style.qmltypes
+        cp -T /usr/lib/qt6/qml/org/hyprland/style/impl/HyprlandStyle.qml /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/hyprland/style/impl/HyprlandStyle.qml
+        cp -T /usr/lib/qt6/qml/org/hyprland/style/impl/MotionBehavior.qml /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/hyprland/style/impl/MotionBehavior.qml
+        cp -T /usr/lib/qt6/qml/org/hyprland/style/impl/hyprland-quick-style-impl.qmltypes /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/hyprland/style/impl/hyprland-quick-style-impl.qmltypes
+        cp -T /usr/lib/qt6/qml/org/hyprland/style/impl/libhyprland-quick-style-implplugin.so /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/hyprland/style/impl/libhyprland-quick-style-implplugin.so
+        cp -T /usr/lib/qt6/qml/org/hyprland/style/impl/qmldir /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/hyprland/style/impl/qmldir
+        cp -T /usr/lib/qt6/qml/org/hyprland/style/libhyprland-quick-styleplugin.so /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/hyprland/style/libhyprland-quick-styleplugin.so
+        cp -T /usr/lib/qt6/qml/org/hyprland/style/qmldir /destdir/${pkgname}-${version}/usr/lib/qt6/qml/org/hyprland/style/qmldir
+}
+
+
+post_install() {
+	vlicense LICENSE
+}

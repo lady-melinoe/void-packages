@@ -4551,3 +4551,10 @@ libopencore-amrnb.so.0 opencore-amr-0.1.6_1
 libopencore-amrwb.so.0 opencore-amr-0.1.6_1
 libilbc.so.3 libilbc-3.0.4_1
 libmaliit-plugins.so.2 maliit-keyboard-2.3.1_1
+libsdbus-c++.so.2 sdbus-cpp-2.1.0_2
+libhyprlang.so.2 hyprlang-0.6.0_3   
+libhyprcursor.so.0 hyprcursor-0.1.11_1
+libtomlplusplus.so.3 tomlplusplus-3.4.0_1
+libhyprutils.so.2 hyprutils-0.3.3_1
+libaquamarine.so.6 aquamarine-0.7.1_1
+libhyprgraphics.so.0 hyprgraphics-0.1.1_1

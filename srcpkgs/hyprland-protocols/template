@@ -1,0 +1,16 @@
+# Template file for 'hyprland-protocols'
+pkgname=hyprland-protocols
+version=0.5.0
+revision=1
+build_style=meson
+hostmakedepends="wayland-devel"
+makedepends="wayland-devel"
+short_desc="Wayland protocol extensions for Hyprland"
+maintainer="Makrennel <makrommel@protonmail.ch>"
+license="BSD-3-Clause"
+homepage="https://github.com/hyprwm/hyprland-protocols"
+distfiles="${homepage}/archive/refs/tags/v${version}.tar.gz"
+checksum=5bbce79ad924310ebc3df30c5f409791b9c05764dc5268d2e37cbc001e3f9c6b
+post_install() {
+	vlicense LICENSE
+}
