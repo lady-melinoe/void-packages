@@ -1,0 +1,14 @@
+# Template file for 'hyprlang'
+pkgname=hyprlang
+version=0.6.0
+revision=3
+build_style=cmake
+hostmakedepends="cmake pkgconf gcc"
+makedepends="hyprutils"
+short_desc="Official implementation library for the hypr config language"
+maintainer="Makrennel <makrommel@protonmail.ch>"
+license="LGPL-3.0-only"
+homepage="https://hyprland.org/hyprlang/index.html"
+changelog="https://github.com/hyprwm/hyprlang/releases"
+distfiles="https://github.com/hyprwm/hyprlang/archive/refs/tags/v${version}.tar.gz"
+checksum=b1a163606402041d92507936fb6dcbc40dd0035b8e8abbf44b0ab59be627b52c

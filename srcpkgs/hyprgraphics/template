@@ -1,0 +1,36 @@
+# Template file for 'hyprgraphics'
+pkgname=hyprgraphics
+version=0.1.1
+revision=1
+hostmakedepends="pkgconf cmake wayland-devel hyprutils hyprwayland-scanner"
+makedepends="
+	pixman-devel
+	cairo-devel
+	hyprutils
+	libjpeg-turbo-devel
+	libwebp-devel
+	file-devel
+	libjxl-devel
+"
+short_desc="Fast wallpaper utility for wlroots compositors with IPC controls"
+maintainer="Makrennel <makrommel@protonmail.ch>"
+license="BSD-3-Clause"
+homepage="https://github.com/hyprwm/hyprgraphics"
+distfiles="${homepage}/archive/refs/tags/v${version}.tar.gz"
+checksum=123a29e53a00bfaf37e7971b929433fb716fd497b3555f72c2d0419ae18e65c7
+do_build() {
+	mkdir -p /builddir/${pkgname}-${version}
+        cmake \
+                --no-warn-unused-cli \
+                -G "Unix Makefiles" \
+                -D CMAKE_BUILD_TYPE=Release \
+                -D CMAKE_INSTALL_PREFIX=/usr \
+                -B build
+        cmake --build build --config Release --target all
+        cmake --install build --prefix usr/
+	mv usr/lib64 usr/lib
+}
+do_install() {
+	cp --remove-destination -R usr /destdir/${pkgname}-${version}/
+}
+

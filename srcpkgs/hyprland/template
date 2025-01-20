@@ -1,0 +1,92 @@
+# Template file for 'hyprland'
+pkgname=hyprland
+version=0.46.2
+revision=2
+build_style=cmake
+configure_args=" --no-warn-unused-cli \
+	-DCMAKE_BUILD_TYPE:STRING=Release \
+	-DCMAKE_INSTALL_PREFIX:PATH=/usr \
+	-DNO_SYSTEMD:STRING=true \
+	-G Ninja
+"
+hstmkdeps="
+	cmake
+	cpio
+	gcc
+	glslang
+	hyprwayland-scanner
+	jq
+	make
+	meson
+	ninja
+	pkgconf
+	wayland-devel
+	hyprgraphics
+"
+hostmakedepends=$hstmkdeps
+makedepends="
+	aquamarine
+	cairo-devel
+	hwids
+	hyprcursor
+	hyprlang
+	hyprutils
+	libdisplay-info-devel
+	libdrm-devel
+	libgbm-devel
+	libglvnd-devel
+	libinput-devel
+	libliftoff-devel
+	libseat-devel
+	libxcb-devel
+	libXcursor-devel
+	libxkbcommon-devel
+	pango-devel
+	tomlplusplus
+	wayland-devel
+	wayland-protocols
+	xcb-util-errors-devel
+	xcb-util-renderutil-devel
+	xcb-util-wm-devel
+	xorg-server-xwayland
+	udis86-devel
+	re2-devel
+"
+short_desc="Dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
+maintainer="Makrennel <makrommel@protonmail.ch>"
+license="BSD-3-Clause"
+homepage="https://hyprland.org/"
+changelog="https://github.com/hyprwm/Hyprland/releases"
+distfiles="https://github.com/hyprwm/Hyprland/releases/download/v${version}/source-v${version}.tar.gz"
+checksum=d072b50ac0bc48aebea7d0bdb3a0188c62103dde42ff3127a9962437f599b0c1
+
+if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
+	configure_args+=" -DCMAKE_CXX_FLAGS=\"-lexecinfo\""
+	makedepends+=" libexecinfo-devel"
+	depends+=" libexecinfo"
+fi
+
+post_install() {
+	# license
+	vlicense LICENSE
+
+	# headers
+	vmkdir usr/include/hyprland
+	vmkdir usr/include/hyprland/protocols
+	vmkdir usr/share/pkgconfig
+
+	cmake --build ./build --config Release --target generate-protocol-headers
+
+	find src -name '*.h*' -print0 | cpio --quiet -0dump ${DESTDIR}/usr/include/hyprland
+	install -Dm0644 protocols/*.h* ${DESTDIR}/usr/include/hyprland/protocols
+	vinstall build/hyprland.pc 644 usr/share/pkgconfig
+}
+
+hyprland-devel_package() {
+	depends="${sourcepkg}>=${version}_${revision} ${hstmkdeps} ${makedepends}"
+	short_desc="Dynamic tiling Wayland compositor - development files"
+	pkg_install() {
+		vmove usr/include
+		vmove usr/share/pkgconfig
+	}
+}
