@@ -1,7 +1,7 @@
 # Template file for 'hyprgraphics'
 pkgname=hyprgraphics
 version=0.1.1
-revision=1
+revision=2
 hostmakedepends="pkgconf cmake wayland-devel hyprutils hyprwayland-scanner"
 makedepends="
 	pixman-devel

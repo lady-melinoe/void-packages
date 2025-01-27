@@ -1,7 +1,7 @@
 # Template file for 'hyprlock'
 pkgname=hyprlock
 version=0.6.1
-revision=2
+revision=3
 build_style=cmake
 hostmakedepends="cmake pkgconf gcc"
 makedepends="cairo-devel hyprlang libdrm-devel libxkbcommon-devel MesaLib-devel pango-devel pam-devel wayland-devel wayland-protocols hyprutils libjpeg-turbo-devel libwebp-devel file-devel sdbus-cpp libjxl-devel hyprgraphics hyprwayland-scanner"
