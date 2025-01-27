@@ -1,7 +1,7 @@
 # Template file for 'hyprutils'
 pkgname=hyprutils
-version=0.3.3
-revision=1
+version=0.5.0
+revision=2
 build_style=cmake
 hostmakedepends="pkgconf"
 makedepends="pixman-devel"
@@ -10,8 +10,7 @@ maintainer="Makrennel <makrommel@protonmail.ch>"
 license="BSD-3-Clause"
 homepage="https://github.com/hyprwm/hyprutils"
 distfiles="https://github.com/hyprwm/hyprutils/archive/refs/tags/v${version}.tar.gz"
-checksum=98cbf5750747cb7bda5665c8bcde5c21b5a449b67c508e9a806b46284efbe1d2
-
+checksum=09b8bd5914cbc645dd5fade1d986356028ade2f8c035710506377f23c54bf7b6
 post_install() {
 	vlicense LICENSE
 }

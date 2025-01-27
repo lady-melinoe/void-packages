@@ -1,6 +1,6 @@
 # Template file for 'hyprland'
 pkgname=hyprland
-version=0.46.2
+version=0.47.0
 revision=2
 build_style=cmake
 configure_args=" --no-warn-unused-cli \
@@ -25,6 +25,7 @@ hstmkdeps="
 "
 hostmakedepends=$hstmkdeps
 makedepends="
+	glaze
 	aquamarine
 	cairo-devel
 	hwids
@@ -58,7 +59,7 @@ license="BSD-3-Clause"
 homepage="https://hyprland.org/"
 changelog="https://github.com/hyprwm/Hyprland/releases"
 distfiles="https://github.com/hyprwm/Hyprland/releases/download/v${version}/source-v${version}.tar.gz"
-checksum=d072b50ac0bc48aebea7d0bdb3a0188c62103dde42ff3127a9962437f599b0c1
+checksum=45176957b935c0bcb16fd9ec0944c35911d26f042bd8e64642aa41152ddea4e8
 
 if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
 	configure_args+=" -DCMAKE_CXX_FLAGS=\"-lexecinfo\""

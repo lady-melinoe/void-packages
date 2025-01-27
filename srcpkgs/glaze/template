@@ -1,0 +1,13 @@
+# Template file for 'glaze'
+pkgname=glaze
+version=4.3.1
+revision=1
+build_style=cmake
+makedepends="git cmake ninja libsanitizer-devel"
+configure_args="-DCMAKE_INSTALL_PREFIX='/usr' -DBUILD_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -G Ninja"
+short_desc="A short description max 72 chars"
+maintainer="melinoe melinoe@thewitchandromeda.stream"
+license="GPL-3.0-or-later"
+homepage="https://github.com/stephenberry/glaze"
+distfiles="https://github.com/stephenberry/glaze/archive/refs/tags/v${version}.tar.gz"
+checksum=934b16d0a00dfc2b06bc2920a6444b8a6a34edb4f0fe872f8ad7a044518a37e3
