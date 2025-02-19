@@ -550,8 +550,6 @@ libsoup-3.0.so.0 libsoup3-3.0.0_1
 libsoup-gnome-2.4.so.1 libsoup-gnome-2.34.0_1
 libgnome-panel.so.3 gnome-panel-3.52.0_1
 libuninum.so.5 libuninum-2.7_1
-libwebkit2gtk-4.0.so.37 webkit2gtk-2.6.2_1
-libjavascriptcoregtk-4.0.so.18 webkit2gtk-2.6.2_1
 libwebkit2gtk-4.1.so.0 libwebkit2gtk41-2.38.0_1
 libjavascriptcoregtk-4.1.so.0 libwebkit2gtk41-2.38.0_1
 libwebkitgtk-6.0.so.4 libwebkitgtk60-2.40.0_1
@@ -3954,9 +3952,11 @@ libtss2-rc.so.0 tpm2-tss-2.3.1_1
 libtss2-tcti-mssim.so.0 tpm2-tss-2.3.1_1
 libtss2-tctildr.so.0 tpm2-tss-2.3.1_1
 libzfsbootenv.so.1 libzfs-2.1.7_1
-libzfs.so.4 libzfs-2.1.7_1
+libzfs.so.6 libzfs-2.3.0_1
+libzpool.so.6 libzfs-2.3.0_1
+libzfs.so.4 libzfs-lts-2.1.7_1
 libuutil.so.3 libzfs-2.1.7_1
-libzpool.so.5 libzfs-2.1.7_1
+libzpool.so.5 libzfs-lts-2.1.7_1
 libzfs_core.so.3 libzfs-2.1.7_1
 libnvpair.so.3 libzfs-2.1.7_1
 libgmio.so gmio-0.4.1_1
@@ -4190,7 +4190,7 @@ libsword-1.8.1.so libsword-1.8.1_6
 libgivaro.so.9 givaro-4.1.1_1
 liblinbox.so.0 linbox-1.6.3_1
 libpari-gmp-tls.so.9 pari-2.17.0_1
-libtree-sitter.so.0.24 tree-sitter-0.24.3_1
+libtree-sitter.so.0.25 tree-sitter-0.25.2_1
 libplanarity.so.0 planarity-3.0.1.1_1
 libgap.so.9 gap-4.13.0_1
 libgtkdatabox.so.1 gtkdatabox3-1.0.0_1
