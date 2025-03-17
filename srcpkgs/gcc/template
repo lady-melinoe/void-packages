@@ -202,6 +202,7 @@ pre_configure() {
 		done
 	fi
 }
+
 do_configure() {
 	local _langs _args _hash
 
@@ -325,6 +326,17 @@ do_configure() {
 			${wrksrc}/configure ${_args}
 	fi
 }
+
+pre_build() {
+	export CFLAGS="${CFLAGS/-D_FORTIFY_SOURCE=2/}"
+	export CXXFLAGS="${CXXFLAGS/-D_FORTIFY_SOURCE=2/}"
+
+	# Disable explicit -fno-PIE, gcc will figure this out itself.
+	export CFLAGS="${CFLAGS//-fno-PIE/}"
+	export CXXFLAGS="${CXXFLAGS//-fno-PIE/}"
+	export LDFLAGS="${LDFLAGS//-no-pie/}"
+}
+
 do_build() {
 	if [ -z "$CHROOT_READY" ]; then
 		export LD_LIBRARY_PATH="${XBPS_MASTERDIR}/usr/lib${XBPS_TARGET_WORDSIZE}"
@@ -340,6 +352,7 @@ do_build() {
 		make ${makejobs}
 	fi
 }
+
 pre_install() {
 	if [ "$CROSS_BUILD" ]; then
 		# XXX otherwise links to host libpthread
@@ -348,6 +361,7 @@ pre_install() {
 		done
 	fi
 }
+
 do_install() {
 	cd build
 
