@@ -308,6 +308,10 @@ do_configure() {
 	mkdir -p build
 	cd build
 	if [ "$build_option_gnatboot" ]; then
+		# file-prefix-map isn't supported in gcc6
+		export CFLAGS="${CFLAGS/-ffile-prefix-map=$wrksrc=./}"
+		export CXXFLAGS="${CXXFLAGS/-ffile-prefix-map=$wrksrc=./}"
+
 		_args+=" --enable-languages=${_langs},ada"
 		_args+=" --enable-libada"
 		CONFIG_SHELL=/bin/bash \
@@ -328,10 +332,10 @@ do_configure() {
 }
 
 pre_build() {
+	# gcc will configure itself again throughout the build, so make sure CFLAGS/CXXFLAGS/etc
+	# are still set the same.
 	export CFLAGS="${CFLAGS/-D_FORTIFY_SOURCE=2/}"
 	export CXXFLAGS="${CXXFLAGS/-D_FORTIFY_SOURCE=2/}"
-
-	# Disable explicit -fno-PIE, gcc will figure this out itself.
 	export CFLAGS="${CFLAGS//-fno-PIE/}"
 	export CXXFLAGS="${CXXFLAGS//-fno-PIE/}"
 	export LDFLAGS="${LDFLAGS//-no-pie/}"
